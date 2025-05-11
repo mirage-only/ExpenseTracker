@@ -4,13 +4,13 @@ namespace ExpenseTracker.Core.Interfaces.Repositories;
 
 public interface IUsersRepository
 {
-    public Task<uint> SignUp(User user);
+    public Task<uint> AddUser(User user);
     
-    public Task<User> GetUserByEmail(string email);
+    public Task<User?> GetUserByEmail(string email);
     
-    public Task<uint> SignIn(string email, string passwordHash); 
+    public Task<User?> GetUserByEmailAndPasswordHash(string email, string passwordHash); 
     
-    public Task<uint> GetUserById(uint userId);
+    public Task<User?> GetUserById(uint userId);
     
     public Task DeleteUser(uint userId); 
 }
