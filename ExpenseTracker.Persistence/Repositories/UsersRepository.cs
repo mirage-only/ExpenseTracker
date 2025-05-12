@@ -44,18 +44,13 @@ public class UsersRepository(ApplicationDbContext dbContext) : IUsersRepository
     public async Task<User?> GetUserById(uint userId)
     {
         var user = await dbContext.Users
-            .AsNoTracking()
-            .FirstOrDefaultAsync(user => user.Id == userId);
+            .FindAsync(userId);
 
         return user;
     }
 
-    public async Task DeleteUser(uint userId)
+    public async Task DeleteUser(User userToDelete)
     {
-        var userToDelete = await dbContext.Users.FirstOrDefaultAsync(user => user.Id == userId);
-        
-        if(userToDelete == null) throw new Exception("User not found");
-        
         dbContext.Remove(userToDelete);
         
         await dbContext.SaveChangesAsync();

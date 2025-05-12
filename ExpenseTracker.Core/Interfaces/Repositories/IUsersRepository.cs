@@ -12,5 +12,5 @@ public interface IUsersRepository
     
     public Task<User?> GetUserById(uint userId);
     
-    public Task DeleteUser(uint userId); 
+    public Task DeleteUser(User userToDelete); 
 }
